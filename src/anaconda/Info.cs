@@ -1,4 +1,3 @@
-using System.Net;
 using System.Threading.Tasks;
 using anaconda.Model;
 using Microsoft.Azure.Functions.Worker;
@@ -16,9 +15,7 @@ namespace anaconda
             var logger = executionContext.GetLogger("Info");
             logger.LogInformation("C# HTTP trigger function processed a request.");
 
-            var response = req.CreateResponse(HttpStatusCode.OK);
-
-            await response.WriteAsJsonAsync(new SnakeInfo());
+            var response = await req.CreateJsonResponse(new SnakeInfo());
             
             return response;
         }

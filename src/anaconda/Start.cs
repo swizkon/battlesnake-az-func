@@ -14,9 +14,6 @@ namespace anaconda
             var logger = executionContext.GetLogger(nameof(Start));
             logger.LogInformation("C# HTTP trigger function processed a request.");
             
-            //response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-            //response.WriteString("Welcome to Azure Functions!");
-
             return req.CreateResponse(HttpStatusCode.OK);
         }
     }
