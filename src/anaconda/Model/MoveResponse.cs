@@ -1,8 +1,10 @@
-﻿namespace anaconda.Model
+﻿using anaconda.Domain;
+
+namespace anaconda.Model
 {
     public class MoveResponse
     {
-        public string Move { get; set; }
+        public Moves Move { get; set; }
         public string Shout { get; set; }
     }
 }
