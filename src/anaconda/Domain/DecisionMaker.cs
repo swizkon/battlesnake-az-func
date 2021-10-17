@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using anaconda.Model;
 using Microsoft.Extensions.Logging;
@@ -12,18 +11,9 @@ namespace anaconda.Domain
         {
             var possibleMoves = GetInitialPossibleMoves(state).ToList();
 
-            //let possibleMoves = {
-            //    up: true,
-            //    down: true,
-            //    left: true,
-            //    right: true
-            //}
-
-
             logger.LogInformation("Possible moved and rank: {@Moves}", possibleMoves);
 
             var moves = possibleMoves
-                .ToList()
                 .OrderByDescending(x => x.Value)
                 // .ThenByDescending(x => new Random().Next())
                 .ToList();
