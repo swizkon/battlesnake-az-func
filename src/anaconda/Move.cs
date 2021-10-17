@@ -21,7 +21,8 @@ namespace anaconda
 
             await response.WriteAsJsonAsync(new MoveResponse
             {
-                Move = "up"
+                Move = "up" ,
+                Shout = "Yeah, like..."
             });
 
             return response;
