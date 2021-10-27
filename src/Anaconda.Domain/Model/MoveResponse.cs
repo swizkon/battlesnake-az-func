@@ -1,6 +1,5 @@
-﻿using anaconda.Domain;
-
-namespace anaconda.Model
+﻿
+namespace Anaconda.Domain.Model
 {
     public class MoveResponse
     {

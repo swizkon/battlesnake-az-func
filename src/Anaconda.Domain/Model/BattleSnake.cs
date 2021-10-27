@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace anaconda.Model
+namespace Anaconda.Domain.Model
 {
     public class BattleSnake
     {

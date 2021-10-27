@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
-using anaconda.Domain;
-using anaconda.Model;
+using Anaconda.Domain;
+using Anaconda.Domain.Model;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;

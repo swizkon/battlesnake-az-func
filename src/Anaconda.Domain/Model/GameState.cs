@@ -1,4 +1,4 @@
-﻿namespace anaconda.Model
+﻿namespace Anaconda.Domain.Model
 {
     public class GameState
     {

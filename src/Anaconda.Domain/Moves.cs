@@ -1,4 +1,4 @@
-﻿namespace anaconda.Domain
+﻿namespace Anaconda.Domain
 {
     public enum Moves
     {

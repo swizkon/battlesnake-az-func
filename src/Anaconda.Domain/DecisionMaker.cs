@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using anaconda.Model;
+using Anaconda.Domain.Model;
 using Microsoft.Extensions.Logging;
 
-namespace anaconda.Domain
+namespace Anaconda.Domain
 {
     public static class DecisionMaker
     {
