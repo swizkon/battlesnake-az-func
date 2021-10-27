@@ -35,44 +35,26 @@ namespace anaconda
 
         [Function("Move")]
         public static async Task<HttpResponseData> HandleMove(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "anaconda/move")]
-            HttpRequestData req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "anaconda/move")] HttpRequestData req,
             FunctionContext executionContext)
         {
+            var timer = Stopwatch.StartNew();
             var logger = executionContext.GetLogger(nameof(HandleMove));
 
             var gameState = await req.ReadFromJsonAsync<GameState>();
 
-            logger.LogInformation("DAta {@data}", gameState);
-
-            var timer = Stopwatch.StartNew();
+            logger.LogInformation("Start decision...");
+            timer.Restart();
             var move = DecisionMaker.CalculateMove(gameState, logger);
             logger.LogInformation("Move decided in {ElapsedMilliseconds} ms", timer.ElapsedMilliseconds);
 
             return await req.CreateJsonResponse(move);
-
-            //var response = req.CreateResponse(HttpStatusCode.OK);
-
-            //await response.WriteAsJsonAsync(move);
-            
-            ////new MoveResponse
-            ////{
-            ////    Move = "up",
-            ////    Shout = "Yeah, like..."
-            ////});
-
-            //return response;
         }
 
         [Function("End")]
         public static HttpResponseData HandleEnd(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "anaconda/end")] HttpRequestData req,
-            FunctionContext executionContext)
-        {
-            var logger = executionContext.GetLogger(nameof(HandleEnd));
-            logger.LogInformation("C# HTTP trigger function processed a request.");
-
-            return req.CreateResponse(HttpStatusCode.OK);
-        }
+            FunctionContext executionContext) =>
+            req.CreateResponse(HttpStatusCode.OK);
     }
 }

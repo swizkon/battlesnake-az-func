@@ -9,7 +9,22 @@ namespace anaconda.Domain
     {
         public static MoveResponse CalculateMove(GameState state, ILogger logger)
         {
+            // char[][] board = new char[state.Board.Width][state.Board.Height];
+
+            logger.LogInformation("Health: {Health}", state.You.Health);
             var possibleMoves = GetInitialPossibleMoves(state).ToList();
+
+            if (!possibleMoves.Any())
+                logger.LogWarning("No possible moves detected...");
+            if (possibleMoves.Count == 1)
+            {
+                logger.LogWarning("Only one move detected: {@Moves}", possibleMoves);
+                return new MoveResponse
+                {
+                    Move = possibleMoves.FirstOrDefault().Key,
+                    Shout = "Only move...Im moving {move}"
+                };
+            }
 
             logger.LogInformation("Possible moved and rank: {@Moves}", possibleMoves);
 
@@ -17,11 +32,6 @@ namespace anaconda.Domain
                 .OrderByDescending(x => x.Value)
                 // .ThenByDescending(x => new Random().Next())
                 .ToList();
-
-            if (!moves.Any())
-            {
-                logger.LogWarning("No possible moves detected...");
-            }
 
             return new MoveResponse
             {
