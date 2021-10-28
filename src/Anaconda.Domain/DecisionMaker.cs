@@ -16,27 +16,21 @@ namespace Anaconda.Domain
 
             if (!possibleMoves.Any())
                 logger.LogWarning("No possible moves detected...");
-            if (possibleMoves.Count == 1)
-            {
+            else if (possibleMoves.Count == 1)
                 logger.LogWarning("Only one move detected: {@Moves}", possibleMoves);
-                return new MoveResponse
-                {
-                    Move = possibleMoves.FirstOrDefault().Key,
-                    Shout = "Only move...Im moving {move}"
-                };
-            }
-
-            logger.LogInformation("Possible moved and rank: {@Moves}", possibleMoves);
+            else 
+                logger.LogInformation("Possible moved and rank: {@Moves}", possibleMoves);
 
             var moves = possibleMoves
                 .OrderByDescending(x => x.Value)
                 // .ThenByDescending(x => new Random().Next())
                 .ToList();
 
+            var move = moves.FirstOrDefault();
             return new MoveResponse
             {
-                Move = moves.FirstOrDefault().Key,
-                Shout = "Im moving {move}"
+                Move = move.Key,
+                Shout = $"Im moving {move.Key} with score {move.Value}"
             };
         }
 
