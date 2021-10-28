@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -28,7 +27,7 @@ namespace FunctionApp1
         };
 
         [FunctionName("Function1")]
-        public static async Task<IActionResult> HandleInfo(
+        public static IActionResult HandleInfo(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "anaconda")] HttpRequest req,
             ILogger log)
         {
@@ -38,7 +37,7 @@ namespace FunctionApp1
         }
 
         [FunctionName("Start")]
-        public static async Task<IActionResult> HandleStart(
+        public static IActionResult HandleStart(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "anaconda/start")] HttpRequest req,
             ILogger log)
         {
@@ -67,7 +66,7 @@ namespace FunctionApp1
         }
         
         [FunctionName("End")]
-        public static async Task<IActionResult> HandleEnd(
+        public static IActionResult HandleEnd(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "anaconda/end")] HttpRequest req,
             ILogger log)
         {
