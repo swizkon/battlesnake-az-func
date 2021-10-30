@@ -7,6 +7,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: swizkon-anaconda
   AZURE_FUNCTIONAPP_PACKAGE_PATH: FunctionApp1\published
   CONFIGURATION: Release
+  COMMIT_HASH: $GITHUB_SHA
   DOTNET_CORE_VERSION: 3.1.x
   WORKING_DIRECTORY: src\FunctionApp1
   DOTNET_CORE_VERSION_INPROC: ''
@@ -28,7 +29,7 @@ jobs:
     - name: Build
       run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
     - name: Publish
-      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}"
+      run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}" /p:Description="${{COMMIT_HASH}}"
     - name: Deploy to Azure Function App
       uses: Azure/functions-action@v1
       with:

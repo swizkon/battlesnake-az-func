@@ -26,9 +26,9 @@ namespace FunctionApp1
             }
         };
 
-        [FunctionName("Function1")]
+        [FunctionName("Info")]
         public static IActionResult HandleInfo(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "anaconda")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "anaconda")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
