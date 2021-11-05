@@ -35,11 +35,11 @@ jobs:
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
 
     - name: Build
-      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore /p:Description="${{steps.vars.outputs.sha_short}}"
 
     - name: Publish
       run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}" /p:Description="${{steps.vars.outputs.sha_short}}"
-      
+
     - name: Deploy to Azure Function App
       uses: Azure/functions-action@v1
       with:

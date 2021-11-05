@@ -24,10 +24,6 @@ namespace Anaconda.Domain.Infra
             SourceHash = GetSourceHash();
         }
 
-        /*
-         * --configuration $(BuildConfiguration) --output "$(build.artifactstagingdirectory)" /property:Description=$(GITHUB_SHA) /p:SourceRevisionId=$(GITHUB_SHA)
-         */
-
         private static string GetSourceVersion() 
             => GetAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion ?? "0.0.0";
 
